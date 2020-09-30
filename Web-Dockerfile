@@ -1,0 +1,10 @@
+FROM php:7.2-apache
+RUN apt-get update && apt-get install -y \
+	vim \
+	curl \
+    && apt-get clean && apt-get autoremove -y
+RUN docker-php-ext-install pdo pdo_mysql
+COPY myweb-app/file-web /var/www/html/
+
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD curl -f http://localhost/ || exit 1

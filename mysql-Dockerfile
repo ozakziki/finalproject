@@ -1,0 +1,5 @@
+FROM mysql:5.7 
+RUN apt-get update && apt-get install vim -y 
+
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD mysqladmin ping -h localhost || exit 1
