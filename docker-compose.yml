@@ -1,4 +1,5 @@
-version: "3.2"
+version: '3.2'
+
 services:
 
   mysql:
@@ -12,7 +13,7 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - int_net
-  pma: 
+  pma:
     image : ozakziki/pma-custom:1.0
     links:
       - mysql
@@ -25,7 +26,8 @@ services:
     ports:
       - 80:80
     networks:
-      - proxy_net    
+      - proxy_net
+      - int_net
 
   web:
     image: ozakziki/web-custom:1.0
@@ -33,12 +35,15 @@ services:
       - proxy_net
       - int_net
     volumes:
-    - /var/data:/var/www/html
-  
+      - web-data:/var/www/html
+
 
 networks:
   int_net:
+    driver: bridge      
   proxy_net:
-
+    driver: bridge
 volumes:
   mysql-data:
+  web-data:
+
