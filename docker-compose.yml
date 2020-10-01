@@ -4,6 +4,7 @@ services:
 
   mysql:
     image: ozakziki/mysql-custom:1.0
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: passwdrahasia
       MYSQL_DATABASE: dbkuasai
@@ -15,6 +16,7 @@ services:
       - int_net
   pma:
     image : ozakziki/pma-custom:1.0
+    restart: always
     environment:
       PMA_HOST: mysql
       PMA_USER: root
@@ -27,6 +29,7 @@ services:
 
   proxy:
     image: ozakziki/proxy-custom:1.0
+    restart: always
     ports:
       - 80:80
     networks:
@@ -35,6 +38,7 @@ services:
 
   web:
     image: ozakziki/web-custom:1.0
+    restart: always
     links:
       - mysql
     networks:
