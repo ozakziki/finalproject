@@ -20,10 +20,8 @@ services:
     image : ozakziki/pma-custom:1.0
     environment:
       PMA_HOST: mysql
-      PMA_USER: root
-      PMA_PASSWORD: passwdrahasia
-    depends_on:
-      - mysql
+      #PMA_USER: root
+      #PMA_PASSWORD: passwdrahasia
     networks:
       - proxy_net
       - int_net
